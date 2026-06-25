@@ -1,13 +1,33 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === '/';
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 80);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // transparent only on homepage before scroll, solid everywhere else
+  const isTransparent = isHome && !scrolled;
 
   return (
-    <header style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50, background: '#000', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+    <header style={{
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
+      background: isTransparent ? 'rgba(255,255,255,0.07)' : 'rgba(8,8,8,0.96)',
+      backdropFilter: 'blur(20px)',
+      WebkitBackdropFilter: 'blur(20px)',
+      borderBottom: isTransparent ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(255,255,255,0.08)',
+      transition: 'background 0.3s ease, border-color 0.3s ease',
+    }}>
       <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '64px', padding: '0 48px', maxWidth: '100%' }}>
 
         {/* Logo — left */}
@@ -28,7 +48,7 @@ export default function Header() {
             <Link
               key={item.label}
               href={item.href}
-              style={{ color: 'rgba(255,255,255,0.75)', fontSize: '12px', letterSpacing: '1.5px', textTransform: 'uppercase', textDecoration: 'none', transition: 'color 0.2s', fontWeight: 500 }}
+              style={{ color: 'rgba(255,255,255,0.85)', fontSize: '12px', letterSpacing: '1.5px', textTransform: 'uppercase', textDecoration: 'none', transition: 'color 0.2s', fontWeight: 600 }}
               onMouseEnter={e => ((e.target as HTMLElement).style.color = 'white')}
               onMouseLeave={e => ((e.target as HTMLElement).style.color = 'rgba(255,255,255,0.75)')}
             >
@@ -81,7 +101,7 @@ export default function Header() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div style={{ background: '#000', borderTop: '1px solid rgba(255,255,255,0.08)', padding: '16px 48px 24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <div style={{ background: 'rgba(10,10,10,0.85)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', borderTop: '1px solid rgba(255,255,255,0.08)', padding: '16px 48px 24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
           {['Home', 'Collection', 'New Arrivals', 'Sale'].map((item) => (
             <Link key={item} href={item === 'Home' ? '/' : '/products'} style={{ color: 'rgba(255,255,255,0.7)', fontSize: '13px', letterSpacing: '1px', textDecoration: 'none' }} onClick={() => setMenuOpen(false)}>
               {item}

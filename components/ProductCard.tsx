@@ -4,25 +4,14 @@ import type { Product } from '@/data/products';
 export default function ProductCard({ product }: { product: Product }) {
   return (
     <Link href={`/products/${product.slug}`} className="product-card block group">
-      {/* Image placeholder */}
-      <div className="product-image-wrap relative aspect-[4/5] bg-[#f5f5f4] mb-4">
-        <div
-          className="placeholder-img w-full h-full flex items-center justify-center"
-          style={{ background: `linear-gradient(135deg, ${product.color}22 0%, ${product.color}55 100%)` }}
-        >
-          {/* Replace this div with <img> when you have product photos */}
-          <div className="text-center">
-            <div
-              className="w-24 h-24 mx-auto rounded-full flex items-center justify-center mb-3 opacity-60"
-              style={{ background: product.color }}
-            >
-              <svg width="40" height="40" fill="none" stroke="white" strokeWidth="1" viewBox="0 0 24 24">
-                <path d="M2 12C2 12 5 5 12 5s10 7 10 7-3 7-10 7S2 12 2 12z"/>
-                <circle cx="12" cy="12" r="3"/>
-              </svg>
-            </div>
-            <span className="text-xs tracking-widest uppercase opacity-40 font-medium">{product.category}</span>
-          </div>
+      {/* Product image */}
+      <div className="product-image-wrap relative aspect-[4/5] bg-[#f5f5f4] mb-4 overflow-hidden">
+        <div className="placeholder-img w-full h-full">
+          <img
+            src="/images/Vello2.JPG"
+            alt={product.name}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+          />
         </div>
 
         {/* Badges */}

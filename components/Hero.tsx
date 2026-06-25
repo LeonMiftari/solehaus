@@ -3,18 +3,18 @@ import Link from 'next/link';
 export default function Hero() {
   return (
     <section className="relative w-full h-screen min-h-[580px] flex items-center justify-center overflow-hidden">
+      {/* Fallback bg — must be first so video renders on top */}
+      <div className="absolute inset-0 bg-[#141210]" />
+
       <video
         className="absolute inset-0 w-full h-full object-cover"
         autoPlay muted loop playsInline
-        poster="/images/hero-poster.jpg"
       >
-        <source src="/hero.mp4" type="video/mp4" />
+        <source src="/Model6.mp4" type="video/mp4" />
       </video>
 
-      {/* Fallback bg */}
-      <div className="absolute inset-0 bg-[#141210]" />
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/50" />
+      {/* Dark overlay on top of video */}
+      <div className="absolute inset-0 bg-black/40" />
 
       {/* Content — centered */}
       <div className="relative z-10 text-center text-white px-6 max-w-2xl mx-auto flex flex-col items-center">

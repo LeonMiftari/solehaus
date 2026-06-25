@@ -31,24 +31,12 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px', alignItems: 'start' }}>
 
           {/* Image */}
-          <div style={{
-            aspectRatio: '4/5',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            background: `linear-gradient(135deg, ${product.color}18 0%, ${product.color}40 100%)`,
-          }}>
-            <div style={{ textAlign: 'center' }}>
-              <div style={{
-                width: '120px', height: '120px', borderRadius: '50%',
-                background: product.color, opacity: 0.4,
-                display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px',
-              }}>
-                <svg width="48" height="48" fill="none" stroke="white" strokeWidth="0.8" viewBox="0 0 24 24">
-                  <path d="M2 12C2 12 5 5 12 5s10 7 10 7-3 7-10 7S2 12 2 12z"/>
-                  <circle cx="12" cy="12" r="3"/>
-                </svg>
-              </div>
-              <p style={{ fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', opacity: 0.3 }}>Drop your image here</p>
-            </div>
+          <div style={{ aspectRatio: '4/5', overflow: 'hidden', background: '#f5f5f4' }}>
+            <img
+              src="/images/Vello2.JPG"
+              alt={product.name}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            />
           </div>
 
           {/* Info */}
