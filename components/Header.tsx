@@ -28,7 +28,7 @@ export default function Header() {
       borderBottom: isTransparent ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(255,255,255,0.08)',
       transition: 'background 0.3s ease, border-color 0.3s ease',
     }}>
-      <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '64px', padding: '0 48px', maxWidth: '100%' }}>
+      <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '64px', padding: '0 clamp(16px, 4vw, 48px)', maxWidth: '100%' }}>
 
         {/* Logo — left */}
         <Link href="/" style={{ textDecoration: 'none', flexShrink: 0 }}>

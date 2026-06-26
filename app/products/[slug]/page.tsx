@@ -17,10 +17,10 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
   return (
     <div style={{ paddingTop: '64px' }}>
-      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '48px 48px 80px' }}>
+      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: 'clamp(24px, 4vw, 48px) clamp(16px, 4vw, 48px) 80px' }}>
 
         {/* Breadcrumb */}
-        <nav style={{ display: 'flex', gap: '8px', fontSize: '12px', color: 'rgba(0,0,0,0.35)', marginBottom: '48px' }}>
+        <nav style={{ display: 'flex', gap: '8px', fontSize: '12px', color: 'rgba(0,0,0,0.35)', marginBottom: '32px' }}>
           <Link href="/" style={{ color: 'rgba(0,0,0,0.35)', textDecoration: 'none' }}>Home</Link>
           <span>/</span>
           <Link href="/products" style={{ color: 'rgba(0,0,0,0.35)', textDecoration: 'none' }}>Products</Link>
@@ -28,7 +28,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <span style={{ color: '#0a0a0a' }}>{product.name}</span>
         </nav>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px', alignItems: 'start' }}>
+        {/* Main layout — stacks on mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16" style={{ alignItems: 'start' }}>
 
           {/* Image */}
           <div style={{ aspectRatio: '4/5', overflow: 'hidden', background: '#f5f5f4' }}>
@@ -47,7 +48,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               {product.isSale && <span style={{ background: '#c9a96e', color: '#000', fontSize: '9px', letterSpacing: '2px', textTransform: 'uppercase', padding: '4px 10px', fontWeight: 600 }}>Sale</span>}
             </div>
 
-            <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '42px', fontWeight: 600, color: '#0a0a0a', marginBottom: '12px', lineHeight: 1.1 }}>
+            <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(32px, 5vw, 42px)', fontWeight: 600, color: '#0a0a0a', marginBottom: '12px', lineHeight: 1.1 }}>
               {product.name}
             </h1>
             <p style={{ color: 'rgba(0,0,0,0.5)', fontSize: '14px', lineHeight: '1.7', marginBottom: '24px' }}>{product.description}</p>
@@ -68,9 +69,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <div style={{ marginTop: '80px', borderTop: '1px solid rgba(0,0,0,0.08)', paddingTop: '64px' }}>
             <div style={{ textAlign: 'center', marginBottom: '40px' }}>
               <p style={{ fontSize: '10px', letterSpacing: '4px', textTransform: 'uppercase', color: '#c9a96e', marginBottom: '12px', fontWeight: 500 }}>You may also like</p>
-              <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '36px', fontWeight: 600 }}>Related Products</h2>
+              <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 600 }}>Related Products</h2>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {related.map((p) => <ProductCard key={p.id} product={p} />)}
             </div>
           </div>
