@@ -54,7 +54,7 @@ export default function Header() {
         transform: hidden ? 'translateY(-100%)' : 'translateY(0)',
         transition: 'background 0.3s ease, transform 0.4s ease',
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '64px', padding: '0 clamp(16px, 4vw, 40px)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '74px', padding: '0 clamp(16px, 4vw, 40px)' }}>
 
           {/* Left — 2-line hamburger */}
           <button
@@ -66,10 +66,17 @@ export default function Header() {
           </button>
 
           {/* Center — logo */}
-          <Link href="/" style={{ textDecoration: 'none', position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
-            <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '30px', fontWeight: 700, letterSpacing: '6px', textTransform: 'uppercase', color: 'white' }}>
-              Eri A
-            </span>
+          <Link href="/" style={{ textDecoration: 'none', position: 'absolute', left: '50%', transform: 'translateX(-50%)', display: 'flex', alignItems: 'center' }}>
+            <img
+              src="/logo.png"
+              alt="Eri Ajeti — Fashion Designer"
+              style={{
+                height: 'clamp(50px, 8vw, 66px)',
+                width: 'auto',
+                display: 'block',
+                filter: 'drop-shadow(0.4px 0 0 #fff) drop-shadow(-0.4px 0 0 #fff) drop-shadow(0 0.4px 0 #fff) drop-shadow(0 -0.4px 0 #fff)',
+              }}
+            />
           </Link>
 
           {/* Right — icons */}
